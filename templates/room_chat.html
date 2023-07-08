@@ -15,17 +15,17 @@
                 </a>
             </div>
             <form>
-                <div class="form-group">
-                    <div class="jumbotron" id="chatbox" style="padding: 4px 2px;max-height: 300px; overflow-y: scroll;">
+                <div class="form-group"  style="max-height:25rem; overflow-y: scroll;">
+                    <div class="jumbotron" id="chatbox" style="padding:2rem 0; margin-bottom: -2rem;">
                     {% if messages %}
                     {% for message in messages %}
                         <b>{{ message.user.username }}</b> : {{ message.content }}<br>
                         {% endfor %}
-                    </div>
-                    <div id="inner_chatbox"></div>
+                        <p>----이전까지채팅기록----</p>
+                    </div><div id="inner_chatbox"></div>
                 </div>
                 {% else %}
-                <div class="jumbotron" id="chatbox" style="padding: 4px 2px;"></div>
+                <div class="jumbotron" id="chatbox"></div>
                 <b>아직 메세지가 없습니다~</b>
                     {% endif %}
 
