@@ -15,7 +15,7 @@
                 </a>
             </div>
             <form>
-                <div class="form-group"  style="max-height:25rem; overflow-y: scroll;">
+                <div class="form-group" id="scrollContainer"  style="max-height:25rem; overflow-y: scroll;">
                     <div class="jumbotron" id="chatbox" style="padding:2rem 0; margin-bottom: -2rem;">
                     {% if messages %}
                     {% for message in messages %}
@@ -44,7 +44,7 @@
 {{slug|json_script:"room_slug"}}
 <script>
 
-const chatbox = document.querySelector("#chatbox");
+const chatbox = document.querySelector("#scrollContainer");
 
 function scrollToBottom() {
     chatbox.scrollTop = chatbox.scrollHeight;
@@ -93,6 +93,7 @@ function scrollToBottom() {
     document.querySelector("#inner_chatbox").appendChild(div);
     scrollToBottom();
     };
+
     </script>
 
 
