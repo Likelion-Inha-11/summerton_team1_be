@@ -33,10 +33,12 @@
 
                 <br/>
                 <div class="form-group" style="width: 100%;">
-                    <input class="form-control" placeholder="Enter text here" id="my_input" type="text" required></br>
+                    <input class="form-control" placeholder="채팅을 입력하세요!" id="my_input" type="text" required></br>
                 </div>
                 <br/>
                 <input class="btn btn-primary btn-lg btn-block" id="submit_button" type="button" value="Send">
+                <input type="text" style="display:none;"/>
+                <!-- 자동submit을 방지하는 display : none input박스 -->
             </form>
         </div>
     </div>
@@ -62,26 +64,51 @@ function scrollToBottom() {
         console.log("Something unexpected happened !");
     };
 
+
     document.querySelector("#my_input").focus();
+
+
     document.querySelector("#my_input").onkeyup = function (e) {
-    if (e.keyCode == 13) {
+
+    if (e.keyCode == "13") {
         e.preventDefault();
-        document.querySelector("#submit_button").click();
+        {/* document.querySelector("#submit_button").onkeyup() */}
+        {/* sendChat(); */}
+        let messageInput = document.querySelector(
+        "#my_input").value;
+
+            console.log(messageInput);
+    if(messageInput.length == 0)
+        {
+            alert("채팅을 입력하세요!");
+
+        }
+        else
+        {
+
+        chatSocket.send(JSON.stringify({ message: messageInput, username : "{{request.user.username}}",room_name:"{{room_name}}"}));
+        }
     }
     };
-    document.querySelector("#submit_button").onclick = function (e) {
-        var messageInput = document.querySelector(
-        "#my_input"
-    ).value;
+
+    function sendChat() {
+    
+        let messageInput = document.querySelector(
+        "#my_input").value;
 
     if(messageInput.length == 0)
         {
-            alert("Add some Input First Or Press Send Button!")
+            alert("채팅을 입력하세요!");
+
         }
         else
         {
         chatSocket.send(JSON.stringify({ message: messageInput, username : "{{request.user.username}}",room_name:"{{room_name}}"}));
         }
+    };
+
+    document.querySelector("#submit_button").onclick = function (e) {
+        sendChat();
     };
 
     chatSocket.onmessage = function (e) {
