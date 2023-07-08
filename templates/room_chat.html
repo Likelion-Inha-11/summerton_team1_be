@@ -16,14 +16,13 @@
             </div>
             <form>
                 <div class="form-group">
+                    <div class="jumbotron" id="chatbox" style="padding: 4px 2px;max-height: 300px; overflow-y: scroll;">
                     {% if messages %}
-                <div class="jumbotron" id="chatbox" style="padding: 4px 2px;max-height: 300px; overflow-y: scroll;
-                "">
                     {% for message in messages %}
                         <b>{{ message.user.username }}</b> : {{ message.content }}<br>
-                        </div>
                         {% endfor %}
-
+                    </div>
+                    <div id="inner_chatbox"></div>
                 </div>
                 {% else %}
                 <div class="jumbotron" id="chatbox" style="padding: 4px 2px;"></div>
@@ -31,6 +30,7 @@
                     {% endif %}
 
                 </div>
+
                 <br/>
                 <div class="form-group" style="width: 100%;">
                     <input class="form-control" placeholder="Enter text here" id="my_input" type="text" required></br>
@@ -90,7 +90,7 @@ function scrollToBottom() {
     div.innerHTML = "<b>" + data.username + "</b> : " + data.message;
 
     document.querySelector("#my_input").value = "";
-    document.querySelector("#chatbox").appendChild(div);
+    document.querySelector("#inner_chatbox").appendChild(div);
     scrollToBottom();
     };
     </script>
@@ -105,7 +105,7 @@ function scrollToBottom() {
             <button type="button" class="btn btn-light"><a href="{% url 'login' %}">로그인</a></button>
         </a>
     </div>
-</div>  
+</div> 
 {% endif %}
 
 <br/>
