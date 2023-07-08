@@ -21,7 +21,9 @@
                     {% for message in messages %}
                         <b>{{ message.user.username }}</b> : {{ message.content }}<br>
                         {% endfor %}
-                        <p>----이전까지채팅기록----</p>
+                        <div class="previousChatting" style=" display:flex; justify-content:center;">
+                        <p style="color: red; font-weight: bold; font-family: serif;"> ㅡ Previous Chatting ㅡ</p>
+                        </div>
                     </div><div id="inner_chatbox"></div>
                 </div>
                 {% else %}
@@ -80,7 +82,7 @@ function scrollToBottom() {
             console.log(messageInput);
     if(messageInput.length == 0)
         {
-            alert("채팅을 입력하세요!");
+            {/* alert("채팅을 입력하세요!"); */}
 
         }
         else
